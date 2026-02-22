@@ -409,110 +409,61 @@
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   }
 
-  /* Speech bubble — floats beside the plant, alternates left/right per card */
+  /* Speech bubble base */
   .speech-bubble {
     position: absolute;
     background: white;
     padding: 11px 13px;
-    max-width: 44%;
+    max-width: 52%;
     font-family: 'Caveat', cursive;
     font-size: 14px;
     line-height: 1.4;
     color: var(--text-dark);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     z-index: 6;
-    top: 50%;
-    transform: translateY(-50%);
   }
 
-  /* RIGHT side bubble (default) — plant center, bubble right */
-  .bubble-right {
-    right: 10px;
-    border-radius: 16px 16px 4px 16px;
-  }
-  .bubble-right::after {
-    content: '';
-    position: absolute;
-    left: -8px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 0; height: 0;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-right: 8px solid white;
-  }
-
-  /* LEFT side bubble — plant center, bubble left */
-  .bubble-left {
-    left: 10px;
-    border-radius: 16px 16px 16px 4px;
-  }
-  .bubble-left::after {
-    content: '';
-    position: absolute;
-    right: -8px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 0; height: 0;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-left: 8px solid white;
-  }
-
-  /* TOP-RIGHT bubble */
+  /*
+    TOP-RIGHT: bubble sits top-right corner
+    Pin (tail) at BOTTOM-LEFT of bubble → points down-left toward center plant
+  */
   .bubble-top-right {
-    right: 10px;
     top: 14px;
-    transform: none;
+    right: 12px;
     border-radius: 16px 4px 16px 16px;
+    transform: none;
   }
   .bubble-top-right::after {
     content: '';
     position: absolute;
-    top: -8px;
-    right: 14px;
+    bottom: -10px;
+    left: 12px;
     width: 0; height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid white;
+    border-right: 10px solid transparent;
+    border-top: 10px solid white;
+    border-left: 0px solid transparent;
   }
 
-  /* BOTTOM-LEFT bubble */
+  /*
+    BOTTOM-LEFT: bubble sits bottom-left corner
+    Pin (tail) at TOP-RIGHT of bubble → points up-right toward center plant
+  */
   .bubble-bottom-left {
-    left: 10px;
-    bottom: 60px;
+    bottom: 58px;
+    left: 12px;
     top: auto;
-    transform: none;
     border-radius: 4px 16px 16px 16px;
+    transform: none;
   }
   .bubble-bottom-left::after {
     content: '';
     position: absolute;
-    bottom: -8px;
-    left: 14px;
+    top: -10px;
+    right: 12px;
     width: 0; height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 8px solid white;
-  }
-
-  /* BOTTOM-RIGHT bubble */
-  .bubble-bottom-right {
-    right: 10px;
-    bottom: 60px;
-    top: auto;
-    transform: none;
-    border-radius: 16px 4px 16px 16px;
-  }
-  .bubble-bottom-right::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    right: 14px;
-    width: 0; height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 8px solid white;
+    border-left: 10px solid transparent;
+    border-bottom: 10px solid white;
+    border-right: 0px solid transparent;
   }
 
   /* Video tap overlay */
@@ -795,10 +746,14 @@
   </div>
   <h1 class="hero-title">Meet <span>Tulasi</span></h1>
 
-  <!-- Hero plant placeholder -->
-  <div style="width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,0.08);border:2px dashed rgba(255,255,255,0.25);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:18px 0 4px;position:relative;z-index:2;flex-shrink:0;">
-    <div style="font-size:64px;animation:sway 4s ease-in-out infinite;display:inline-block;">🌿</div>
-    <span style="font-size:9px;color:rgba(255,255,255,0.35);letter-spacing:1px;margin-top:4px;text-transform:uppercase;font-family:'DM Sans',sans-serif;">Place Tulasi Image</span>
+  <!-- Hero plant image placeholder — replace inner img tag with your actual image -->
+  <div style="width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.1);border:2.5px dashed rgba(255,255,255,0.3);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:22px 0 8px;position:relative;z-index:2;flex-shrink:0;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.25);">
+    <!-- ↓ Replace this block with: <img src="tulasi-hero.jpg" alt="Tulasi" style="width:100%;height:100%;object-fit:cover;"> -->
+    <img src="Tulasi_1.jpg" alt="Tulasi Plant" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div style="display:none;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;position:absolute;inset:0;">
+      <svg width="40" height="40" viewBox="0 0 48 48" fill="none" style="opacity:0.35;"><rect x="6" y="6" width="36" height="36" rx="4" stroke="white" stroke-width="2"/><circle cx="18" cy="20" r="5" stroke="white" stroke-width="2"/><path d="M6 34 L16 26 L24 32 L32 22 L42 34" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg>
+      <span style="font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:1px;margin-top:8px;text-transform:uppercase;font-family:'DM Sans',sans-serif;text-align:center;line-height:1.7;">Place<br>Tulasi<br>Image</span>
+    </div>
   </div>
 
   <p class="hero-sub">She's been in Indian homes for 5000 years. She has a lot to say.</p>
@@ -940,14 +895,12 @@
   <div class="emotion-card">
     <div class="plant-media emo-happy" onclick="toggleVideo(this)">
       <div class="plant-img-placeholder">
-        <div style="text-align:center;padding:12px;">
-          <div class="plant-emoji-big">🌿😊</div>
-          <p style="font-family:'Caveat',cursive;font-size:15px;color:#2d7a4f;margin-top:12px;">Place your<br><strong>Happy Tulasi image</strong> here</p>
-          <p style="font-size:11px;color:#5bb87a;margin-top:6px;">Replace this div with &lt;img&gt; tag</p>
-        </div>
+        <!-- Replace with: <img src="tulasi-happy.jpg" style="width:100%;height:100%;object-fit:cover;"> -->
+        <svg width="44" height="44" viewBox="0 0 48 48" fill="none" style="opacity:0.25;"><rect x="6" y="6" width="36" height="36" rx="4" stroke="#2d7a4f" stroke-width="2"/><circle cx="18" cy="19" r="5" stroke="#2d7a4f" stroke-width="2"/><path d="M6 34 L16 24 L24 32 L32 22 L42 34" stroke="#2d7a4f" stroke-width="2" stroke-linejoin="round"/></svg>
+        <p style="font-family:'DM Sans',sans-serif;font-size:11px;color:#2d7a4f;margin-top:10px;text-align:center;opacity:0.5;letter-spacing:0.5px;line-height:1.6;">Place<br><strong>Happy Tulasi</strong><br>Image Here</p>
       </div>
       <div class="emotion-label-pill">😊 Happy &amp; Thriving</div>
-      <div class="speech-bubble bubble-right">If you skip even one day of morning watering in summer, you'll see me start drooping by evening. Daily water at my base = daily happiness! 🌿😊</div>
+      <div class="speech-bubble bubble-top-right">If you skip even one day of morning watering in summer, you'll see me start drooping by evening. Daily water at my base = daily happiness! 🌿😊</div>
       <div class="tap-to-watch">
         <div class="play-dot">▶</div>
         Tap to watch me speak
@@ -973,30 +926,22 @@
   <div class="emotion-card">
     <div class="plant-media emo-sad" onclick="toggleVideo(this)">
       <div class="plant-img-placeholder">
-        <div style="text-align:center;padding:12px;">
-          <div class="plant-emoji-big">🥀😢</div>
-          <p style="font-family:'Caveat',cursive;font-size:15px;color:#3a6090;margin-top:12px;">Place your<br><strong>Sad Tulasi image</strong> here</p>
-          <p style="font-size:11px;color:#5b90c0;margin-top:6px;">Replace this div with &lt;img&gt; tag</p>
-        </div>
+        <svg width="44" height="44" viewBox="0 0 48 48" fill="none" style="opacity:0.25;"><rect x="6" y="6" width="36" height="36" rx="4" stroke="#3a6090" stroke-width="2"/><circle cx="18" cy="19" r="5" stroke="#3a6090" stroke-width="2"/><path d="M6 34 L16 24 L24 32 L32 22 L42 34" stroke="#3a6090" stroke-width="2" stroke-linejoin="round"/></svg>
+        <p style="font-family:'DM Sans',sans-serif;font-size:11px;color:#3a6090;margin-top:10px;text-align:center;opacity:0.5;letter-spacing:0.5px;line-height:1.6;">Place<br><strong>Sad Tulasi</strong><br>Image Here</p>
       </div>
-      <div class="emotion-label-pill">😢 Sad &amp; Wilting</div>
-      <div class="speech-bubble bubble-left">If you don't water me for 3 days in summer... my leaves will droop and cry 😢</div>
-      <div class="tap-to-watch">
-        <div class="play-dot">▶</div>
-        Tap to watch me speak
-      </div>
-      <video class="plant-video" playsinline>
-        <source src="tulasi-sad.mp4" type="video/mp4">
-      </video>
+      <div class="emotion-label-pill">&#128546; Sad &amp; Wilting</div>
+      <div class="speech-bubble bubble-bottom-left">If you don't water me for 3 days in summer, my leaves droop and cry. My soil turns to dust and I have no strength to stand tall &#128546;&#128167;</div>
+      <div class="tap-to-watch"><div class="play-dot">&#9654;</div>Tap to watch me speak</div>
+      <video class="plant-video" playsinline><source src="tulasi-sad.mp4" type="video/mp4"></video>
     </div>
     <div class="card-body">
-      <div class="card-emotion-title">😢 Sad &amp; Neglected</div>
-      <p class="card-context">If you forget to water me for 3+ days in summer, I start drooping. My leaves lose their deep green. This is my SOS signal I need help right now!</p>
+      <div class="card-emotion-title">&#128546; Sad &amp; Neglected</div>
+      <p class="card-context">If you forget to water me for 3+ days in summer, I start drooping. My leaves lose their deep green. This is my SOS signal!</p>
       <div class="card-tips">
-        <div class="tip-row"><span class="tip-icon">🚨</span><span class="tip-text"><strong>SOS Signal:</strong> Drooping leaves and yellow patches mean underwatered urgently.</span></div>
-        <div class="tip-row"><span class="tip-icon">💧</span><span class="tip-text"><strong>Revival:</strong> Deep water me slowly. Let water soak through the drainage holes at the bottom.</span></div>
-        <div class="tip-row"><span class="tip-icon">🌫️</span><span class="tip-text"><strong>Misting:</strong> Lightly mist my leaves on hot afternoons. I'll perk up within hours!</span></div>
-        <div class="tip-row"><span class="tip-icon">🧪</span><span class="tip-text"><strong>Soil check:</strong> Poke a finger 2 inches into soil. If completely dry, water me immediately. If moist, wait another day.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#128680;</span><span class="tip-text"><strong>SOS Signal:</strong> Drooping leaves and yellow patches mean underwatered urgently.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#128167;</span><span class="tip-text"><strong>Revival:</strong> Deep water me slowly. Let water soak through the drainage holes.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#127787;&#65039;</span><span class="tip-text"><strong>Misting:</strong> Lightly mist my leaves on hot afternoons. I'll perk up within hours!</span></div>
+        <div class="tip-row"><span class="tip-icon">&#129514;</span><span class="tip-text"><strong>Soil check:</strong> Poke a finger 2 inches into soil. If completely dry, water me immediately.</span></div>
       </div>
     </div>
   </div>
@@ -1005,32 +950,22 @@
   <div class="emotion-card">
     <div class="plant-media emo-angry" onclick="toggleVideo(this)">
       <div class="plant-img-placeholder">
-        <div style="text-align:center;padding:12px;">
-          <div class="plant-emoji-big">🌿😠</div>
-          <p style="font-family:'Caveat',cursive;font-size:15px;color:#a04020;margin-top:12px;">Place your<br><strong>Grumpy Tulasi image</strong> here</p>
-          <p style="font-size:11px;color:#c06040;margin-top:6px;">Replace this div with &lt;img&gt; tag</p>
-        </div>
+        <svg width="44" height="44" viewBox="0 0 48 48" fill="none" style="opacity:0.25;"><rect x="6" y="6" width="36" height="36" rx="4" stroke="#a04020" stroke-width="2"/><circle cx="18" cy="19" r="5" stroke="#a04020" stroke-width="2"/><path d="M6 34 L16 24 L24 32 L32 22 L42 34" stroke="#a04020" stroke-width="2" stroke-linejoin="round"/></svg>
+        <p style="font-family:'DM Sans',sans-serif;font-size:11px;color:#a04020;margin-top:10px;text-align:center;opacity:0.5;letter-spacing:0.5px;line-height:1.6;">Place<br><strong>Grumpy Tulasi</strong><br>Image Here</p>
       </div>
-      <div class="emotion-label-pill">😠 Grumpy &amp; Scorched</div>
-      <div class="speech-bubble bubble-top-right">If you don't move me to shade between 12 PM and 4 PM in summer, my leaf tips will turn brown and crispy from the heat! 😠🔥</div>
-      <div class="tap-to-watch">
-        <div class="play-dot">▶</div>
-        Tap to watch me speak
-      </div>
-      <video class="plant-video" playsinline>
-        <source src="tulasi-grumpy.mp4" type="video/mp4">
-      </video>
+      <div class="emotion-label-pill">&#128544; Grumpy &amp; Scorched</div>
+      <div class="speech-bubble bubble-top-right">If you don't move me to shade between 12 PM and 4 PM in summer, my leaf tips turn brown and crispy! &#128544;&#128293;</div>
+      <div class="tap-to-watch"><div class="play-dot">&#9654;</div>Tap to watch me speak</div>
+      <video class="plant-video" playsinline><source src="tulasi-grumpy.mp4" type="video/mp4"></video>
     </div>
     <div class="card-body">
-      <div class="card-emotion-title">😠 Grumpy &amp; Overheated</div>
+      <div class="card-emotion-title">&#128544; Grumpy &amp; Overheated</div>
       <p class="card-context">I love sun, but harsh 1 to 4 PM afternoon sun in Indian summers (above 40°C) scorches my leaves. Brown crispy edges? That's sunburn not lack of water!</p>
       <div class="card-tips">
-        <div class="tip-row"><span class="tip-icon">🕐</span><span class="tip-text"><strong>Timing:</strong> Move me to partial shade between 12 PM and 4 PM in peak summer months.</span></div>
-        <div class="tip-row"><span class="tip-icon">🍂</span><span class="tip-text"><strong>Burnt leaves:</strong> Prune scorched leaves. They won't recover but new growth will start quickly!</span></div>
-        <div class="tip-row"><span class="tip-icon">🧴</span><span class="tip-text"><strong>Mulching:</strong> Add dry leaves around my pot base to keep soil from overheating in sun.</span></div>
-        <div class="tip-row"><span class="tip-icon">🌡️</span><span class="tip-text"><strong>Temperature limit:</strong> Above 42°C I get heat stress. Watch for curling or browning leaf edges as early signs.</span></div>
-        <div class="tip-row"><span class="tip-icon">🪴</span><span class="tip-text"><strong>Pot heat:</strong> Dark colored pots absorb more heat. Switch to terracotta or light-colored pots in summer.</span></div>
-        <div class="tip-row"><span class="tip-icon">💦</span><span class="tip-text"><strong>Cooling mist:</strong> A light mist at 6 AM before sun gets harsh cools the leaf surface and reduces heat stress significantly.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#128336;</span><span class="tip-text"><strong>Timing:</strong> Move me to partial shade between 12 PM and 4 PM in peak summer months.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#127810;</span><span class="tip-text"><strong>Burnt leaves:</strong> Prune scorched leaves. New growth will start quickly!</span></div>
+        <div class="tip-row"><span class="tip-icon">&#127997;</span><span class="tip-text"><strong>Mulching:</strong> Add dry leaves around my pot base to keep soil from overheating.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#127777;&#65039;</span><span class="tip-text"><strong>Temperature limit:</strong> Above 42°C I get heat stress. Watch for curling or browning leaf edges.</span></div>
       </div>
     </div>
   </div>
@@ -1039,30 +974,22 @@
   <div class="emotion-card">
     <div class="plant-media emo-sleepy" onclick="toggleVideo(this)">
       <div class="plant-img-placeholder">
-        <div style="text-align:center;padding:12px;">
-          <div class="plant-emoji-big">🌿😴</div>
-          <p style="font-family:'Caveat',cursive;font-size:15px;color:#5040a0;margin-top:12px;">Place your<br><strong>Sleepy Tulasi image</strong> here</p>
-          <p style="font-size:11px;color:#7060b0;margin-top:6px;">Replace this div with &lt;img&gt; tag</p>
-        </div>
+        <svg width="44" height="44" viewBox="0 0 48 48" fill="none" style="opacity:0.25;"><rect x="6" y="6" width="36" height="36" rx="4" stroke="#5040a0" stroke-width="2"/><circle cx="18" cy="19" r="5" stroke="#5040a0" stroke-width="2"/><path d="M6 34 L16 24 L24 32 L32 22 L42 34" stroke="#5040a0" stroke-width="2" stroke-linejoin="round"/></svg>
+        <p style="font-family:'DM Sans',sans-serif;font-size:11px;color:#5040a0;margin-top:10px;text-align:center;opacity:0.5;letter-spacing:0.5px;line-height:1.6;">Place<br><strong>Sleepy Tulasi</strong><br>Image Here</p>
       </div>
-      <div class="emotion-label-pill">😴 Sleepy &amp; Dormant</div>
-      <div class="speech-bubble bubble-bottom-left">If you don't reduce watering in winter and keep daily watering below 10°C, my roots will rot underground without you knowing 😴❄️</div>
-      <div class="tap-to-watch">
-        <div class="play-dot">▶</div>
-        Tap to watch me speak
-      </div>
-      <video class="plant-video" playsinline>
-        <source src="tulasi-sleepy.mp4" type="video/mp4">
-      </video>
+      <div class="emotion-label-pill">&#128564; Sleepy &amp; Dormant</div>
+      <div class="speech-bubble bubble-bottom-left">If you don't reduce watering when temperature drops below 10°C, my roots will rot underground without you knowing &#128564;&#10052;&#65039;</div>
+      <div class="tap-to-watch"><div class="play-dot">&#9654;</div>Tap to watch me speak</div>
+      <video class="plant-video" playsinline><source src="tulasi-sleepy.mp4" type="video/mp4"></video>
     </div>
     <div class="card-body">
-      <div class="card-emotion-title">😴 Sleepy &amp; In Winter Mode</div>
-      <p class="card-context">In November to February, I slow down. Fewer leaves, slower growth. This is completely normal I'm resting and storing energy for spring's grand comeback!</p>
+      <div class="card-emotion-title">&#128564; Sleepy &amp; In Winter Mode</div>
+      <p class="card-context">In November to February, I slow down. Fewer leaves, slower growth. This is completely normal — I'm resting and storing energy for spring's grand comeback!</p>
       <div class="card-tips">
-        <div class="tip-row"><span class="tip-icon">❄️</span><span class="tip-text"><strong>Cold Alert:</strong> I cannot survive below 10°C. Bring me indoors near a sunny window in winter.</span></div>
-        <div class="tip-row"><span class="tip-icon">💧</span><span class="tip-text"><strong>Reduce watering:</strong> Cut watering to every 2 to 3 days. Overwatering in winter leads to root rot.</span></div>
-        <div class="tip-row"><span class="tip-icon">✂️</span><span class="tip-text"><strong>No heavy pruning:</strong> Let me conserve energy. Prune only lightly in spring when new growth appears.</span></div>
-        <div class="tip-row"><span class="tip-icon">🌅</span><span class="tip-text"><strong>Sunlight in winter:</strong> Even in cold months I still need 4 to 5 hours of sunlight. A south-facing window works great.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#10052;&#65039;</span><span class="tip-text"><strong>Cold Alert:</strong> I cannot survive below 10°C. Bring me indoors near a sunny window in winter.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#128167;</span><span class="tip-text"><strong>Reduce watering:</strong> Cut watering to every 2 to 3 days. Overwatering in winter leads to root rot.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#9988;&#65039;</span><span class="tip-text"><strong>No heavy pruning:</strong> Let me conserve energy. Prune only lightly in spring when new growth appears.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#127749;</span><span class="tip-text"><strong>Sunlight in winter:</strong> Even in cold months I still need 4 to 5 hours of sunlight. A south-facing window works great.</span></div>
       </div>
     </div>
   </div>
@@ -1071,31 +998,23 @@
   <div class="emotion-card">
     <div class="plant-media emo-loved" onclick="toggleVideo(this)">
       <div class="plant-img-placeholder">
-        <div style="text-align:center;padding:12px;">
-          <div class="plant-emoji-big">🌿🥰</div>
-          <p style="font-family:'Caveat',cursive;font-size:15px;color:#a04060;margin-top:12px;">Place your<br><strong>Loved Tulasi image</strong> here</p>
-          <p style="font-size:11px;color:#c06080;margin-top:6px;">Replace this div with &lt;img&gt; tag</p>
-        </div>
+        <svg width="44" height="44" viewBox="0 0 48 48" fill="none" style="opacity:0.25;"><rect x="6" y="6" width="36" height="36" rx="4" stroke="#a04060" stroke-width="2"/><circle cx="18" cy="19" r="5" stroke="#a04060" stroke-width="2"/><path d="M6 34 L16 24 L24 32 L32 22 L42 34" stroke="#a04060" stroke-width="2" stroke-linejoin="round"/></svg>
+        <p style="font-family:'DM Sans',sans-serif;font-size:11px;color:#a04060;margin-top:10px;text-align:center;opacity:0.5;letter-spacing:0.5px;line-height:1.6;">Place<br><strong>Loved Tulasi</strong><br>Image Here</p>
       </div>
-      <div class="emotion-label-pill">🥰 Loved &amp; Cared For</div>
-      <div class="speech-bubble bubble-left">If you don't add compost even once a month, I'll stop growing bushy and my fragrance will fade. Feed me and I'll fill your balcony with scent! 🥰💚</div>
-      <div class="tap-to-watch">
-        <div class="play-dot">▶</div>
-        Tap to watch me speak
-      </div>
-      <video class="plant-video" playsinline>
-        <source src="tulasi-loved.mp4" type="video/mp4">
-      </video>
+      <div class="emotion-label-pill">&#129392; Loved &amp; Cared For</div>
+      <div class="speech-bubble bubble-top-right">If you don't add compost even once a month, I'll stop growing bushy and my fragrance will fade. Feed me and I'll fill your balcony with scent! &#129392;&#128154;</div>
+      <div class="tap-to-watch"><div class="play-dot">&#9654;</div>Tap to watch me speak</div>
+      <video class="plant-video" playsinline><source src="tulasi-loved.mp4" type="video/mp4"></video>
     </div>
     <div class="card-body">
-      <div class="card-emotion-title">🥰 Loved &amp; Flourishing</div>
-      <p class="card-context">Morning misting, occasional neem oil spray, fresh compost every month, and your daily presence this is what peak care feels like! I give you fragrance in return. 🌸</p>
+      <div class="card-emotion-title">&#129392; Loved &amp; Flourishing</div>
+      <p class="card-context">Morning misting, occasional neem oil spray, fresh compost every month, and your daily presence — this is what peak care feels like! I give you fragrance in return.</p>
       <div class="card-tips">
-        <div class="tip-row"><span class="tip-icon">🌿</span><span class="tip-text"><strong>Feeding:</strong> Add cow dung compost or vermicompost once a month for lush dense growth.</span></div>
-        <div class="tip-row"><span class="tip-icon">🦟</span><span class="tip-text"><strong>Pest care:</strong> Neem oil and water spray every 2 weeks keeps aphids and whiteflies far away.</span></div>
-        <div class="tip-row"><span class="tip-icon">✂️</span><span class="tip-text"><strong>Pinching:</strong> Pinch off flower buds regularly to keep me bushy, dense, and delay early bolting.</span></div>
-        <div class="tip-row"><span class="tip-icon">🌸</span><span class="tip-text"><strong>Fragrance reward:</strong> The more you care for me, the stronger my essential oil scent becomes especially on warm mornings!</span></div>
-        <div class="tip-row"><span class="tip-icon">🫙</span><span class="tip-text"><strong>Harvest leaves:</strong> Pluck from the top tips, not the base. This encourages side branching and more leaf production.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#127807;</span><span class="tip-text"><strong>Feeding:</strong> Add cow dung compost or vermicompost once a month for lush dense growth.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#129432;</span><span class="tip-text"><strong>Pest care:</strong> Neem oil and water spray every 2 weeks keeps aphids and whiteflies far away.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#9988;&#65039;</span><span class="tip-text"><strong>Pinching:</strong> Pinch off flower buds regularly to keep me bushy, dense, and delay early bolting.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#127800;</span><span class="tip-text"><strong>Fragrance reward:</strong> The more you care for me, the stronger my essential oil scent — especially on warm mornings!</span></div>
+        <div class="tip-row"><span class="tip-icon">&#129337;</span><span class="tip-text"><strong>Harvest leaves:</strong> Pluck from the top tips, not the base. This encourages side branching and more leaf production.</span></div>
       </div>
     </div>
   </div>
@@ -1104,32 +1023,23 @@
   <div class="emotion-card">
     <div class="plant-media emo-calm" onclick="toggleVideo(this)">
       <div class="plant-img-placeholder">
-        <div style="text-align:center;padding:12px;">
-          <div class="plant-emoji-big">🌿😌</div>
-          <p style="font-family:'Caveat',cursive;font-size:15px;color:#2d6050;margin-top:12px;">Place your<br><strong>Calm Tulasi image</strong> here</p>
-          <p style="font-size:11px;color:#4d8070;margin-top:6px;">Replace this div with &lt;img&gt; tag</p>
-        </div>
+        <svg width="44" height="44" viewBox="0 0 48 48" fill="none" style="opacity:0.25;"><rect x="6" y="6" width="36" height="36" rx="4" stroke="#2d6050" stroke-width="2"/><circle cx="18" cy="19" r="5" stroke="#2d6050" stroke-width="2"/><path d="M6 34 L16 24 L24 32 L32 22 L42 34" stroke="#2d6050" stroke-width="2" stroke-linejoin="round"/></svg>
+        <p style="font-family:'DM Sans',sans-serif;font-size:11px;color:#2d6050;margin-top:10px;text-align:center;opacity:0.5;letter-spacing:0.5px;line-height:1.6;">Place<br><strong>Calm Tulasi</strong><br>Image Here</p>
       </div>
-      <div class="emotion-label-pill">😌 Calm &amp; Sacred</div>
-      <div class="speech-bubble bubble-bottom-right">If you don't keep me elevated and let me sit on the ground in damp shade, I lose my spiritual energy AND get fungal disease. Lift me up! 🕯️🙏</div>
-      <div class="tap-to-watch">
-        <div class="play-dot">▶</div>
-        Tap to watch me speak
-      </div>
-      <video class="plant-video" playsinline>
-        <source src="tulasi-calm.mp4" type="video/mp4">
-      </video>
+      <div class="emotion-label-pill">&#128524; Calm &amp; Sacred</div>
+      <div class="speech-bubble bubble-bottom-left">If you let me sit on the ground in damp shade, I'll lose my spiritual energy AND get fungal disease. Keep me elevated and in the sun! &#128333;&#128591;</div>
+      <div class="tap-to-watch"><div class="play-dot">&#9654;</div>Tap to watch me speak</div>
+      <video class="plant-video" playsinline><source src="tulasi-calm.mp4" type="video/mp4"></video>
     </div>
     <div class="card-body">
-      <div class="card-emotion-title">😌 Calm &amp; Spiritually Rooted</div>
-      <p class="card-context">I've been in Indian homes since the Vedic age. I purify the air, ward off mosquitoes, and my presence is believed to bring positive energy. I am Vishnu's plant. 🕉️</p>
+      <div class="card-emotion-title">&#128524; Calm &amp; Spiritually Rooted</div>
+      <p class="card-context">I've been in Indian homes since the Vedic age. I purify the air, ward off mosquitoes, and my presence is believed to bring positive energy. I am Vishnu's plant.</p>
       <div class="card-tips">
-        <div class="tip-row"><span class="tip-icon">🕉️</span><span class="tip-text"><strong>Sacred tradition:</strong> Keep me elevated on a tulsi chaura in the center of your home or balcony.</span></div>
-        <div class="tip-row"><span class="tip-icon">🌬️</span><span class="tip-text"><strong>Air purifier:</strong> I release oxygen even at night and absorb CO₂, benzene and CO from the air around you.</span></div>
-        <div class="tip-row"><span class="tip-icon">🦟</span><span class="tip-text"><strong>Natural repellent:</strong> My aroma naturally repels mosquitoes, gnats, and flies without any chemicals.</span></div>
-        <div class="tip-row"><span class="tip-icon">🌙</span><span class="tip-text"><strong>Leaf plucking rule:</strong> Never pluck my leaves after sunset. Plants absorb CO₂ at night and disrupting me then isn't ideal.</span></div>
-        <div class="tip-row"><span class="tip-icon">💊</span><span class="tip-text"><strong>Daily wellness:</strong> Chew 4 to 5 fresh leaves on an empty stomach in the morning for immunity and stress relief.</span></div>
-        <div class="tip-row"><span class="tip-icon">☕</span><span class="tip-text"><strong>Tulsi tea:</strong> Boil 6 fresh leaves in water for 5 minutes. Add honey and ginger. Best remedy for cold, cough and sore throat.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#129693;</span><span class="tip-text"><strong>Sacred tradition:</strong> Keep me elevated on a tulsi chaura in the center of your home or balcony.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#127783;&#65039;</span><span class="tip-text"><strong>Air purifier:</strong> I release oxygen even at night and absorb CO2, benzene and CO from the air around you.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#129432;</span><span class="tip-text"><strong>Natural repellent:</strong> My aroma naturally repels mosquitoes, gnats, and flies without any chemicals.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#128139;</span><span class="tip-text"><strong>Daily wellness:</strong> Chew 4 to 5 fresh leaves on an empty stomach in the morning for immunity and stress relief.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#9749;</span><span class="tip-text"><strong>Tulsi tea:</strong> Boil 6 fresh leaves in water for 5 minutes. Add honey and ginger. Best remedy for cold, cough and sore throat.</span></div>
       </div>
     </div>
   </div>
@@ -1138,30 +1048,22 @@
   <div class="emotion-card">
     <div class="plant-media emo-thriving" onclick="toggleVideo(this)">
       <div class="plant-img-placeholder">
-        <div style="text-align:center;padding:12px;">
-          <div class="plant-emoji-big">🌿🤩</div>
-          <p style="font-family:'Caveat',cursive;font-size:15px;color:#7a7010;margin-top:12px;">Place your<br><strong>Thriving Tulasi image</strong> here</p>
-          <p style="font-size:11px;color:#9a9030;margin-top:6px;">Replace this div with &lt;img&gt; tag</p>
-        </div>
+        <svg width="44" height="44" viewBox="0 0 48 48" fill="none" style="opacity:0.25;"><rect x="6" y="6" width="36" height="36" rx="4" stroke="#7a7010" stroke-width="2"/><circle cx="18" cy="19" r="5" stroke="#7a7010" stroke-width="2"/><path d="M6 34 L16 24 L24 32 L32 22 L42 34" stroke="#7a7010" stroke-width="2" stroke-linejoin="round"/></svg>
+        <p style="font-family:'DM Sans',sans-serif;font-size:11px;color:#7a7010;margin-top:10px;text-align:center;opacity:0.5;letter-spacing:0.5px;line-height:1.6;">Place<br><strong>Thriving Tulasi</strong><br>Image Here</p>
       </div>
-      <div class="emotion-label-pill">🤩 Peak Health!</div>
-      <div class="speech-bubble bubble-right">If you don't pinch my flower spikes now, I'll go to seed early and stop growing leaves. Pinch them! Let me stay bushy and beautiful longer! 🤩✨</div>
-      <div class="tap-to-watch">
-        <div class="play-dot">▶</div>
-        Tap to watch me speak
-      </div>
-      <video class="plant-video" playsinline>
-        <source src="tulasi-thriving.mp4" type="video/mp4">
-      </video>
+      <div class="emotion-label-pill">&#129321; Peak Health!</div>
+      <div class="speech-bubble bubble-top-right">If you don't pinch my flower spikes now, I'll go to seed early and stop growing leaves. Pinch them — keep me bushy and beautiful! &#129321;&#10024;</div>
+      <div class="tap-to-watch"><div class="play-dot">&#9654;</div>Tap to watch me speak</div>
+      <video class="plant-video" playsinline><source src="tulasi-thriving.mp4" type="video/mp4"></video>
     </div>
     <div class="card-body">
-      <div class="card-emotion-title">🤩 Peak Mode Maximum Growth</div>
+      <div class="card-emotion-title">&#129321; Peak Mode Maximum Growth</div>
       <p class="card-context">March to October is my golden season in India. Long sunny days, warm soil, regular pruning, and monthly feeding = unstoppable Tulasi. This is when I grow 2 to 3 cm per week!</p>
       <div class="card-tips">
-        <div class="tip-row"><span class="tip-icon">📏</span><span class="tip-text"><strong>Growth rate:</strong> In peak season I can reach 60 to 90 cm tall. Prune regularly to keep me bushy and full.</span></div>
-        <div class="tip-row"><span class="tip-icon">🔄</span><span class="tip-text"><strong>Repotting:</strong> Repot every spring into a pot 2 inches larger with a fresh soil mix for explosive new growth.</span></div>
-        <div class="tip-row"><span class="tip-icon">🌸</span><span class="tip-text"><strong>Flowering:</strong> Pinch flower spikes to keep leaves growing strong. Let a few bloom for seeds to grow new plants!</span></div>
-        <div class="tip-row"><span class="tip-icon">🌾</span><span class="tip-text"><strong>Seed saving:</strong> Dry flower spikes on paper for 7 days. Store seeds in a cool dry place. They stay viable for up to 2 years.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#128207;</span><span class="tip-text"><strong>Growth rate:</strong> In peak season I can reach 60 to 90 cm tall. Prune regularly to keep me bushy and full.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#128260;</span><span class="tip-text"><strong>Repotting:</strong> Repot every spring into a pot 2 inches larger with a fresh soil mix for explosive new growth.</span></div>
+        <div class="tip-row"><span class="tip-icon">&#127800;</span><span class="tip-text"><strong>Flowering:</strong> Pinch flower spikes to keep leaves growing strong. Let a few bloom for seeds to grow new plants!</span></div>
+        <div class="tip-row"><span class="tip-icon">&#127807;</span><span class="tip-text"><strong>Seed saving:</strong> Dry flower spikes on paper for 7 days. Store seeds in a cool dry place. They stay viable for up to 2 years.</span></div>
       </div>
     </div>
   </div>
